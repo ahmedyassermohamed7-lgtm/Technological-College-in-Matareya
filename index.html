@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الكلية التكنولوجية المطرية - الصفحة الرئيسية</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body class="loading-state">
+
+    <!-- القائمة الجانبية المخفية -->
+    <!-- طبقة التظليل عند فتح القائمة -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<aside class="sidhedar sidebar-collapsed">
+    <header class="sidebar-header">
+        <div class="logo-container">
+            <a href="#" class="header-logo"><img src="images.jpg" alt="logo"></a>
+            <span class="logo-text" data-i18n="college_title">الكلية التكنولوجية بالمطرية</span>
+        </div>
+        <button class="sidebar-toggler">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+    </header>
+
+    <nav class="sidebar-nav">
+        <ul class="nav-list primary-nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">home</span>
+                    <span class="nav-label" data-i18n="home">الصفحة الرئيسية</span>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">school</span>
+                    <span class="nav-label" data-i18n="institutes">معاهد الكلية</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                   <li class="nav-item"><a href="#" class="nav-link" id="sidebarMatInd" data-i18n="inst_mat_ind">المعهد الفني الصناعي بالمطرية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_com">المعهد الفني التجاري بالمطرية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_shub_ind">المعهد الفني الصناعي بشبرا</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_shub_com">المعهد الفني التجاري بشبرا</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_tourism">المعهد الفني للسياحة والفنادق بالمطرية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_irrigation">المعهد الفني للري والصرف والمساحة بالمطرية</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">groups</span>
+                    <span class="nav-label" data-i18n="student_affairs">شؤون الطلبة</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-i18n="affairs_info">معلومات الشؤون</a>
+                    </li>
+                    <li class="nav-item dropdown-container">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <span class="material-symbols-outlined">online_prediction</span>
+                            <span class="nav-label" data-i18n="e_services">الخدمات الإلكترونية</span>
+                            <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="pay_fees">دفع مصاريف المعهد</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="get_form">استخراج الاستمارة</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="enrollment_cert">إثبات قيد</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="metro_form">استمارة المترو</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="institute_card">كارنيه المعهد</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="materials_cd">اسطوانة المواد</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="material-symbols-outlined">newspaper</span>
+                    <span class="nav-label" data-i18n="news">الأخبار والفعاليات</span>
+                </a>
+            </li>
+
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">distance</span>
+                    <span class="nav-label" data-i18n="maps">مواقع المعاهد</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/UVgEQQjtbKt14kMLA" target="_blank" class="nav-link" data-i18n="inst_mat_ind">المعهد الفني الصناعي بالمطرية</a></li>
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/ADJP4A2bzwYeVHNM6" target="_blank" class="nav-link" data-i18n="inst_mat_com">المعهد الفني التجاري بالمطرية</a></li>
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/HAHxfqrhhUVUEcHe7" target="_blank" class="nav-link" data-i18n="inst_shub_ind">المعهد الفني الصناعي بشبرا</a></li>
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/HAHxfqrhhUVUEcHe7" target="_blank" class="nav-link" data-i18n="inst_shub_com">المعهد الفني التجاري بشبرا</a></li>
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/EiCGzdetVcUP8oPDA" target="_blank" class="nav-link" data-i18n="inst_mat_tourism">المعهد الفني للسياحة والفنادق بالمطرية</a></li>
+                    <li class="nav-item"><a href="https://maps.app.goo.gl/mJGVH1yJXxJyYTRi7" target="_blank" class="nav-link" data-i18n="inst_mat_irrigation">المعهد الفني للري والصرف والمساحة بالمطرية</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">info</span>
+                    <span class="nav-label" data-i18n="about_all">حول الموقع والمعاهد</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item dropdown-container">
+                        <a href="#" class="nav-link dropdown-toggle">
+                            <span class="material-symbols-outlined">corporate_fare</span>
+                            <span class="nav-label" data-i18n="about_institutes">حول المعاهد</span>
+                            <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_ind">المعهد الفني الصناعي بالمطرية</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_com">المعهد الفني التجاري بالمطرية</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_shub_ind">المعهد الفني الصناعي بشبرا</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_shub_com">المعهد الفني التجاري بشبرا</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_tourism">المعهد الفني للسياحة والفنادق بالمطرية</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link" data-i18n="inst_mat_irrigation">المعهد الفني للري والصرف والمساحة بالمطرية</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-i18n="about_site">حول الموقع</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="nav-list secindary-nav">
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">contact_support</span>
+                    <span class="nav-label" data-i18n="contact_us">تواصل معنا</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="facebook">فيس بوك</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="whatsapp">واتس اب</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-i18n="email">البريد الإلكتروني</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown-container">
+                <a href="#" class="nav-link dropdown-toggle">
+                    <span class="material-symbols-outlined">language</span>
+                    <span class="nav-label" data-i18n="site_lang">لغة الموقع</span>
+                    <span class="dropdown-icon material-symbols-outlined">keyboard_arrow_down</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="nav-item"><a href="#" class="nav-link lang-selector" data-lang="ar">العربية</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link lang-selector" data-lang="en">English</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link lang-selector" data-lang="de">Deutsch</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="theme-toggle-btn">
+                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                    <span class="nav-label" id="theme-text" data-i18n="dark_mode">الوضع الليلي</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
+
+    <!-- طبقة التظليل عند فتح القائمة -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="page-layout">
+        <main class="main-content">
+            
+            <section class="hero-section" id="heroBg">
+                <div class="top-nav">
+                <a href="#" class="top-link cascade-item"><i class="fa-solid fa-arrow-right-to-bracket"></i> تسجيل الدخول</a>
+                <a href="#" class="top-link cascade-item"><i class="fa-solid fa-magnifying-glass"></i> بحث</a>
+            </div>
+
+                <div class="hero-title-area">
+                    <div class="full-ring-gradient" id="animatedRing"></div>
+                    <div class="text-wrapper" id="animatedText">
+                        <h1 class="main-title">الكلية التكنولوجية المطرية</h1>
+                        <h3 class="sub-title">AL-MATARIA INDUSTRIAL TECHNICAL INSTITUTE</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="six-buttons-section cascade-item">
+                <div class="colorful-btn blue-btn" id="mainMatIndBtn">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>المعهد الفني<br>الصناعي بالمطرية</span>
+                </div>
+                <div class="colorful-btn orange-btn">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>المعهد الفني التجاري<br>بالمطرية</span>
+                </div>
+                <div class="colorful-btn green-btn">
+                    <i class="fa-solid fa-wrench"></i>
+                    <span>المعهد الفني<br>الصناعي بشبرا</span>
+                </div>
+                <div class="colorful-btn purple-btn">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <span>المعهد الفني التجاري<br>بشبرا</span>
+                </div>
+                <div class="colorful-btn yellow-btn">
+                    <i class="fa-solid fa-tree"></i>
+                    <span>المعهد الفني للسياحة<br>والفنادق بالمطرية</span>
+                </div>
+                <div class="colorful-btn red-btn">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>المعهد الفني للرى<br>والصرف والمساحة<br>بالمطرية</span>
+                </div>
+            </section>
+
+            <section class="news-section cascade-item">
+                <div class="news-header">
+                    <h2>أحدث الأخبار والإعلانات</h2>
+                    <div class="pagination">
+                        <span id="prevPageBtn" class="nav-arrow">&lt;</span> 
+                        <span id="pageNumberDisplay">1</span> 
+                        <span id="nextPageBtn" class="nav-arrow">&gt;</span>
+                    </div>
+                </div>
+
+                <!-- حاوية الأخبار -->
+                <div class="news-grid" id="newsContainer">
+                    
+                    <div class="news-card news-item">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ورشة عمل للسياحة والفنادق">
+                        <div class="news-info">
+                            <h4>ورشة عمل تدريبية للسياحة<br>والفنادق بالمطرية</h4>
+                            <p class="news-tag">ورشة المشمول</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ورشة عمل هندسية">
+                        <div class="news-info">
+                            <h4>ورشة عمل تدريبية<br>بالمعهد الصناعي بشبرا</h4>
+                            <p class="news-tag">ورشة عمل</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="المعهد التجاري">
+                        <div class="news-info">
+                            <h4>المعهد الفني التجاري<br>بشبرا</h4>
+                            <p class="news-tag">تدريب تكنولوجي</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item">
+                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="المعهد الصناعي">
+                        <div class="news-info">
+                            <h4>المعهد الفني التكنولوجي<br>الصناعي بالمطرية</h4>
+                            <p class="news-tag">أخبار الأقسام</p>
+                        </div>
+                    </div>
+
+                    <div class="news-card news-item" style="display: none;">
+                        <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشاريع تخرج تشغيل معادن">
+                        <div class="news-info">
+                            <h4>مشاريع التخرج 2026<br>قسم الصناعات</h4>
+                            <p class="news-tag">إعلان أكاديمي</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item" style="display: none;">
+                        <img src="https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="تصميم ميكانيكي">
+                        <div class="news-info">
+                            <h4>مسابقة التصميم الميكانيكي<br>باستخدام SolidWorks</h4>
+                            <p class="news-tag">فعالية طلابية</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item" style="display: none;">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="ملتقى توظيف">
+                        <div class="news-info">
+                            <h4>ندوة توظيف الشركات<br>وتأهيل الخريجين لسوق العمل</h4>
+                            <p class="news-tag">ملتقى توظيف</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card news-item" style="display: none;">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="سيرفرات البوابة">
+                        <div class="news-info">
+                            <h4>تطوير البوابة الإلكترونية<br>للنتائج وتحديث السيرفرات</h4>
+                            <p class="news-tag">أخبار تقنية</p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <footer class="main-footer">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <h4>شؤون الطلاب</h4>
+                        <ul>
+                            <li><a href="#">شؤون الطلاب</a></li>
+                            <li><a href="#">الأخبار والفعاليات</a></li>
+                            <li><a href="#">الخدمات الإلكترونية</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <ul>
+                            <li><a href="#">من نحن</a></li>
+                            <li><a href="#">عن الكلية</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">Government</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Location Map</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>الصفحة الرسمية للكلية التكنولوجية المطرية</p>
+                    <div class="social-icons">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </footer>
+        </main>
+    </div>
+       <div id="instituteSpecialPage" class="special-page-container">
+        
+        <div id="movedButton" class="colorful-btn blue-btn moved-state">
+            <i class="fa-solid fa-gear"></i>
+            <span>المعهد الفني<br>الصناعي بالمطرية</span>
+        </div>
+
+        <div class="special-page-content" id="specialContent">
+            
+            <div class="section-block">
+                <h2 class="magic-title">نبذة عن المعهد</h2>
+                <div class="typing-container" id="typingBox">
+                    <p class="scroll-typing-text" id="aboutText">
+                        يعتبر المعهد الفني الصناعي بالمطرية من أعرق المعاهد التكنولوجية في مصر. يهدف المعهد إلى تخريج كوادر فنية مدربة على أحدث التقنيات لمواكبة متطلبات سوق العمل المحلي والدولي. يضم المعهد نخبة من أفضل الأساتذة والمهندسين، ويوفر بيئة تعليمية تفاعلية تعتمد على التطبيق العملي بجانب الدراسة الأكاديمية، مما يجعله الخيار الأول للطلاب الطامحين في التميز الهندسي والصناعي لبناء مستقبل مشرق للوطن.
+                        يعتبر المعهد الفني الصناعي بالمطرية من أعرق المعاهد التكنولوجية في مصر. يهدف المعهد إلى تخريج كوادر فنية مدربة على أحدث التقنيات لمواكبة متطلبات سوق العمل المحلي والدولي. يضم المعهد نخبة من أفضل الأساتذة والمهندسين، ويوفر بيئة تعليمية تفاعلية تعتمد على التطبيق العملي بجانب الدراسة الأكاديمية، مما يجعله الخيار الأول للطلاب الطامحين في التميز الهندسي والصناعي لبناء مستقبل مشرق للوطن.
+                        يعتبر المعهد الفني الصناعي بالمطرية من أعرق المعاهد التكنولوجية في مصر. يهدف المعهد إلى تخريج كوادر فنية مدربة على أحدث التقنيات لمواكبة متطلبات سوق العمل المحلي والدولي. يضم المعهد نخبة من أفضل الأساتذة والمهندسين، ويوفر بيئة تعليمية تفاعلية تعتمد على التطبيق العملي بجانب الدراسة الأكاديمية، مما يجعله الخيار الأول للطلاب الطامحين في التميز الهندسي والصناعي لبناء مستقبل مشرق للوطن.
+                        
+                        يعتبر المعهد الفني الصناعي بالمطرية من أعرق المعاهد التكنولوجية في مصر. يهدف المعهد إلى تخريج كوادر فنية مدربة على أحدث التقنيات لمواكبة متطلبات سوق العمل المحلي والدولي. يضم المعهد نخبة من أفضل الأساتذة والمهندسين، ويوفر بيئة تعليمية تفاعلية تعتمد على التطبيق العملي بجانب الدراسة الأكاديمية، مما يجعله الخيار الأول للطلاب الطامحين في التميز الهندسي والصناعي لبناء مستقبل مشرق للوطن.
+                    </p>
+                </div>
+            </div>
+
+            <div class="section-block fade-in-section" id="yearsSection">
+                <h2 class="magic-title">الفرقة</h2>
+                <div class="water-buttons-row">
+                    <button class="water-btn" data-type="year" data-val="1">الفرقة الأولى</button>
+                    <button class="water-btn" data-type="year" data-val="2">الفرقة الثانية</button>
+                </div>
+            </div>
+
+            <div class="section-block hidden-block" id="termsSection">
+                <h2 class="magic-title">الترم</h2>
+                <div class="water-buttons-row">
+                    <button class="water-btn" data-type="term" data-val="1">الترم الأول</button>
+                    <button class="water-btn" data-type="term" data-val="2">الترم الثاني</button>
+                </div>
+            </div>
+
+            <div class="section-block hidden-block" id="deptsSection">
+                <h2 class="magic-title">الشعبة</h2>
+                <div class="depts-grid" id="deptsGrid">
+                    </div>
+                    <div class="section-block hidden-block" id="subjectsSection">
+                <div class="glowing-dept-title" id="subjectsTitle">شعبة تشغيل وتشكيل</div>
+                
+                <div class="subjects-table-container">
+                    <table class="subjects-table">
+                        <thead>
+                            <tr>
+                                <th>المواد الدراسية</th>
+                                <th>الدرجة</th>
+                                <th>المهندسين (الهيئة التدريسية)</th>
+                                <th>CV المهندس</th>
+                            </tr>
+                        </thead>
+                        <tbody id="subjectsTbody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div> 
+    <script src="script.js"></script>
+</body>
+</html>
