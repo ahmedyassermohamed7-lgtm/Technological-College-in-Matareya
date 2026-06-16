@@ -22,12 +22,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 1500);
 
     // 4. ظهور باقي العناصر المتتالية (الأزرار والأخبار)
+    // 4. ظهور باقي العناصر المتتالية (الأزرار والأخبار)
     setTimeout(() => {
         cascadeItems.forEach((item, index) => {
             setTimeout(() => {
                 item.classList.add('visible');
             }, index * 200); 
         });
+        
+        // التعديل هنا: كود إظهار الشريط العلوي مع باقي العناصر
+        const topBar = document.querySelector('.fixed-top-bar');
+        if(topBar) {
+            topBar.classList.add('show-bar');
+        }
     }, 2000);
 
     // 5. ظهور القائمة الجانبية مقفولة بعد الانتهاء من كل الأنيميشن (عند الثانية 2.5)
@@ -460,12 +467,28 @@ const allSubjectsData = {
 // 1. دالة تفعيل انتقال الصفحة
 function triggerInstitutePage(e) {
     e.preventDefault();
+    
+    // جلب اسم المعهد ديناميكياً من الزرار الذي تم الضغط عليه
+    let instituteName = "المعهد الفني";
+    if(this.querySelector('span')) {
+        instituteName = this.querySelector('span').innerText.replace(/\n/g, ' ');
+    } else if (this.innerText) {
+        instituteName = this.innerText;
+    }
+
     mainContent.classList.add('fade-out-main');
     specialPage.classList.add('active-page');
     setTimeout(() => { movedButton.classList.add('fly-top-right'); }, 100);
     prepareTypingText();
-}
 
+    // ---- الكود الجديد الخاص بإضافة المعهد للمسارات ----
+    currentPath = [
+        { id: 'home', title: 'الصفحة الرئيسية' },
+        { id: 'sections', title: 'الأقسام' },
+        { id: 'institute', title: instituteName }
+    ];
+    renderBreadcrumbs();
+}
 if(mainMatIndBtn) mainMatIndBtn.addEventListener('click', triggerInstitutePage);
 if(sidebarMatInd) sidebarMatInd.addEventListener('click', triggerInstitutePage);
 
@@ -514,23 +537,7 @@ function prepareTypingText() {
 // لضمان عدم اختفاء وظهور النص مرة أخرى عند النزول والصعود بالبكرة.
 
 // برمجة اختفاء السطور (سطر سطر) من فوق لتحت عند النزول بالبكرة
-specialPage.addEventListener('scroll', () => {
-    // بنجمع كل الحروف اللي أخدت كلاس (revealed) يعني اتكتبت خلاص
-    const revealedSpans = aboutText.querySelectorAll('span.revealed');
-    
-    revealedSpans.forEach(span => {
-        // الدالة دي بتجيب مكان الحرف الحالي فين بالظبط في الشاشة
-        const rect = span.getBoundingClientRect();
-        
-        // السر هنا: أي حروف على نفس السطر ليها نفس الارتفاع تقريباً
-        // لما تنزل بالبكرة، الارتفاع ده بيقل.. لو وصل لـ 260 بكسل من فوق، السطر بيختفي!
-        if(rect.top < 260) {
-            span.classList.add('hide-top'); // بنضيف كلاس الاختفاء
-        } else {
-            span.classList.remove('hide-top'); // بنشيله لو رجعت طلعت لفوق تاني
-        }
-    });
-});
+
 
 // 3. برمجة أزرار الفرقة والترم (تأثير الماس)
 const subjectsSection = document.getElementById('subjectsSection'); // جلبنا الجدول
@@ -546,14 +553,30 @@ waterBtns.forEach(btn => {
 
         if (type === 'year') {
             selectedYear = val;
+            
+            // -- كود المسار الجديد (إضافة الفرقة) --
+            const instIndex = currentPath.findIndex(p => p.id === 'institute');
+            if(instIndex !== -1) currentPath = currentPath.slice(0, instIndex + 1);
+            currentPath.push({ id: 'year', title: this.innerText });
+            renderBreadcrumbs();
+            // ------------------------------------
+
             termsSection.classList.add('show-block');
             deptsSection.classList.remove('show-block');
-            subjectsSection.classList.remove('show-block'); // إخفاء الجدول لو غير الفرقة
+            subjectsSection.classList.remove('show-block');
             document.querySelectorAll('[data-type="term"]').forEach(t => t.classList.remove('active-water'));
         } 
         else if (type === 'term') {
-            selectedTerm = val; // حفظنا الترم
-            subjectsSection.classList.remove('show-block'); // إخفاء الجدول لو غير الترم
+            selectedTerm = val;
+            
+            // -- كود المسار الجديد (إضافة الترم) --
+            const yearIndex = currentPath.findIndex(p => p.id === 'year');
+            if(yearIndex !== -1) currentPath = currentPath.slice(0, yearIndex + 1);
+            currentPath.push({ id: 'term', title: this.innerText });
+            renderBreadcrumbs();
+            // ------------------------------------
+
+            subjectsSection.classList.remove('show-block');
             deptsSection.classList.add('show-block');
             buildDepartments(selectedYear);
         }
@@ -582,11 +605,17 @@ function buildDepartments(year) {
             });
             this.classList.toggle('selected-dept');
 
-            // لو الشعبة اتحددت باللون الأخضر، نبني الجدول بتاعها ونظهره
             if(this.classList.contains('selected-dept')) {
+                // -- كود المسار الجديد (إضافة اسم الشعبة) --
+                const termIndex = currentPath.findIndex(p => p.id === 'term');
+                if(termIndex !== -1) currentPath = currentPath.slice(0, termIndex + 1);
+                currentPath.push({ id: 'dept', title: dept.name });
+                renderBreadcrumbs();
+                // ------------------------------------------
+                
                 showSubjectsTable(selectedYear, selectedTerm, dept.name);
             } else {
-                subjectsSection.classList.remove('show-block'); // لو لغا التحديد يخفي الجدول
+                subjectsSection.classList.remove('show-block');
             }
         });
 
@@ -640,3 +669,265 @@ function showSubjectsTable(year, term, deptName) {
         subjectsSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 200);
 }
+
+// =========================================================================
+// 5. نظام مسارات التنقل (Breadcrumbs) وزر الرجوع للرئيسية
+// =========================================================================
+
+const breadcrumbContainer = document.getElementById('breadcrumbContainer');
+
+// المصفوفة التي تحفظ المكان الحالي
+let currentPath = [
+    { id: 'home', title: 'الصفحة الرئيسية' }
+];
+
+// دالة لرسم المسارات في الـ HTML
+function renderBreadcrumbs() {
+    breadcrumbContainer.innerHTML = ''; 
+    
+    currentPath.forEach((step, index) => {
+        const item = document.createElement('div');
+        item.className = 'breadcrumb-item';
+        item.dataset.id = step.id;
+        item.textContent = step.title;
+        
+        // لو ضغطنا على المسار
+        item.addEventListener('click', () => handleBreadcrumbClick(step.id, index));
+        breadcrumbContainer.appendChild(item);
+
+        // إضافة علامة السهم (>) بين الخانات، ما عدا آخر خانة
+        if (index < currentPath.length - 1) {
+            const separator = document.createElement('span');
+            separator.className = 'breadcrumb-separator';
+            separator.textContent = '>'; // علامة السهم التي طلبتها
+            breadcrumbContainer.appendChild(separator);
+        }
+    });
+}
+
+// إظهار المسار الأساسي "الصفحة الرئيسية" بعد انتهاء أنيميشن فتح الموقع (عند الثانية 2.5)
+setTimeout(() => {
+    breadcrumbContainer.classList.add('visible');
+    renderBreadcrumbs();
+}, 2500);
+
+// ================= دالة الرجوع للصفحة الرئيسية بأنيميشن البلع =================
+function returnToHome() {
+    // 1. إعادة الصفحة الأصلية وإخفاء صفحة المعهد الخاصة
+    const specialPage = document.getElementById('instituteSpecialPage');
+    const mainContent = document.querySelector('.main-content');
+    const movedBtn = document.getElementById('movedButton');
+    
+    if(specialPage) specialPage.classList.remove('active-page');
+    if(mainContent) mainContent.classList.remove('fade-out-main');
+    if(movedBtn) movedBtn.classList.remove('fly-top-right');
+
+    // مسح نص البحث عند العودة للرئيسية
+    if(siteSearchInput) siteSearchInput.value = '';
+
+    // 2. تصفير كل التحديدات داخل صفحة المعهد
+    const termsSection = document.getElementById('termsSection');
+    const deptsSection = document.getElementById('deptsSection');
+    const subjectsSection = document.getElementById('subjectsSection');
+    
+    if(termsSection) termsSection.classList.remove('show-block');
+    if(deptsSection) deptsSection.classList.remove('show-block');
+    if(subjectsSection) subjectsSection.classList.remove('show-block');
+    
+    document.querySelectorAll('.water-btn').forEach(btn => btn.classList.remove('active-water'));
+    document.querySelectorAll('.dept-btn').forEach(btn => btn.classList.remove('selected-dept'));
+    
+    selectedYear = null;
+    selectedTerm = null;
+
+    // 3. تشغيل أنيميشن "البلع" باتجاه اليمين للمسارات الفرعية فقط
+    const items = breadcrumbContainer.querySelectorAll('.breadcrumb-item, .breadcrumb-separator');
+    items.forEach((el, index) => {
+        if (index > 0) {
+            el.classList.add('swallowed'); 
+        }
+    });
+
+    // 4. تحديث مصفوفة المسارات بعد انتهاء تأثير الأنيميشن
+    setTimeout(() => {
+        currentPath = [{ id: 'home', title: 'الصفحة الرئيسية' }];
+        renderBreadcrumbs();
+    }, 400);
+}
+
+// دالة التحكم عند الضغط على أي مسار من فوق
+function handleBreadcrumbClick(id, index) {
+    if (id === 'home') {
+        returnToHome();
+    } else {
+        // لو ضغط على مسار في المنتصف، نقص المصفوفة لحد المسار ده
+        const itemsToRemove = currentPath.length - 1 - index;
+        if(itemsToRemove > 0) {
+            currentPath = currentPath.slice(0, index + 1);
+            renderBreadcrumbs();
+            
+            // نخفي الأقسام بناءً على رجوعنا لفين
+            if (id === 'institute') {
+                document.getElementById('termsSection').classList.remove('show-block');
+                document.getElementById('deptsSection').classList.remove('show-block');
+                document.getElementById('subjectsSection').classList.remove('show-block');
+                document.querySelectorAll('.water-btn').forEach(btn => btn.classList.remove('active-water'));
+            } else if (id === 'year') {
+                 document.getElementById('deptsSection').classList.remove('show-block');
+                 document.getElementById('subjectsSection').classList.remove('show-block');
+                 // مسح تحديد الترم
+                 document.querySelectorAll('[data-type="term"]').forEach(t => t.classList.remove('active-water'));
+            } else if (id === 'term') {
+                document.getElementById('subjectsSection').classList.remove('show-block');
+                document.querySelectorAll('.dept-btn').forEach(btn => btn.classList.remove('selected-dept'));
+            }
+        }
+    }
+}
+
+// 5. تفعيل زر القائمة الجانبية (الصفحة الرئيسية)
+const sidebarHomeBtn = document.getElementById('sidebarHomeBtn');
+if (sidebarHomeBtn) {
+    sidebarHomeBtn.addEventListener('click', (e) => {
+        e.preventDefault(); 
+        returnToHome(); // نفس دالة الرجوع
+        
+        // إغلاق القائمة الجانبية في الموبايل لو كانت مفتوحة
+        document.querySelector(".sidhedar").classList.add("sidebar-collapsed");
+    });
+}
+
+// =========================================================================
+// =========================================================================
+// 6. تشغيل نظام البحث الذكي (باقتراحات فورية)
+// =========================================================================
+const siteSearchInput = document.getElementById('siteSearchInput');
+const searchSuggestions = document.getElementById('searchSuggestions');
+const siteSearchBtn = document.getElementById('siteSearchBtn');
+
+// 1. تجميع الداتا الموجودة في الموقع عشان نبحث فيها (المعاهد، الشعب، المواد)
+let smartSearchData = [];
+
+// إضافة المعاهد يدوياً
+const instituteList = ["المعهد الفني الصناعي بالمطرية", "المعهد الفني التجاري بالمطرية", "المعهد الفني الصناعي بشبرا", "المعهد الفني التجاري بشبرا", "المعهد الفني للسياحة والفنادق بالمطرية", "المعهد الفني للري والصرف بالمطرية"];
+instituteList.forEach(inst => smartSearchData.push({ text: inst, type: "معهد" }));
+
+// إضافة الشعب (بنجيبها من المتغير departmentsData بتاعك)
+Object.values(departmentsData).forEach(year => {
+    year.forEach(dept => {
+        // نمنع التكرار لو الشعبة موجودة في سنة تانية
+        if (!smartSearchData.some(item => item.text === dept.name)) {
+            smartSearchData.push({ text: dept.name, type: "شعبة" });
+        }
+    });
+});
+
+// إضافة المواد (بنجيبها من المتغير allSubjectsData بتاعك)
+let addedSubjects = [];
+Object.values(allSubjectsData).forEach(subjectArray => {
+    subjectArray.forEach(subjectString => {
+        // بنفصل اسم المادة عن الدرجة زي ما أنت عامل في الكود
+        let subjectName = subjectString.split('-')[0].trim();
+        if (!addedSubjects.includes(subjectName)) {
+            addedSubjects.push(subjectName);
+            smartSearchData.push({ text: subjectName, type: "مادة" });
+        }
+    });
+});
+
+// 2. برمجة ظهور الاقتراحات بمجرد ما يكتب حرفين
+if (siteSearchInput && searchSuggestions) {
+    siteSearchInput.addEventListener('input', function() {
+        const query = this.value.trim().toLowerCase();
+        
+        // لو مسح الكلام أو كتب حرف واحد، نخفي القائمة
+        if (query.length < 2) {
+            searchSuggestions.style.display = 'none';
+            return;
+        }
+
+        // فلترة الداتا بناءً على اللي بيكتبه
+        const matchedResults = smartSearchData.filter(item => 
+            item.text.toLowerCase().includes(query)
+        );
+
+        // تفريغ القائمة القديمة
+        searchSuggestions.innerHTML = '';
+
+        if (matchedResults.length > 0) {
+            matchedResults.forEach(result => {
+                const div = document.createElement('div');
+                div.className = 'suggestion-item';
+                div.innerHTML = `<span class="suggestion-badge">${result.type}</span> ${result.text}`;
+                
+                // لما يدوس على الاقتراح
+                div.addEventListener('click', () => {
+                    siteSearchInput.value = result.text;
+                    searchSuggestions.style.display = 'none';
+                    executeSearch(result.text, result.type);
+                });
+
+                searchSuggestions.appendChild(div);
+            });
+            searchSuggestions.style.display = 'block';
+        } else {
+            searchSuggestions.innerHTML = `<div class="suggestion-item" style="color: #e74c3c; justify-content:center;">لا توجد نتائج مطابقة</div>`;
+            searchSuggestions.style.display = 'block';
+        }
+    });
+
+    // إخفاء القائمة لو ضغط بالماوس في أي مكان فاضي في الشاشة
+    document.addEventListener('click', function(e) {
+        if (e.target !== siteSearchInput && e.target !== searchSuggestions) {
+            searchSuggestions.style.display = 'none';
+        }
+    });
+}
+
+// 3. الدالة اللي بتنفذ الحدث لما نختار حاجة من البحث
+function executeSearch(keyword, type) {
+    if (type === "معهد" || type === "شعبة") {
+        // بيبحث عن الزرار اللي فيه اسم المعهد أو الشعبة ويعمل عليه إضاءة
+        const buttons = document.querySelectorAll('.cascade-item, .water-btn, .dept-btn');
+        let found = false;
+        buttons.forEach(btn => {
+            if (btn.innerText.toLowerCase().includes(keyword.toLowerCase())) {
+                btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                btn.style.animation = "glowingEffect 1.5s infinite alternate";
+                setTimeout(() => { btn.style.animation = ""; }, 4000);
+                found = true;
+            }
+        });
+        if(!found) {
+            alert("يرجى اختيار الفرقة والترم لتظهر أقسام/شعب هذا الاختيار.");
+        }
+    } 
+    else if (type === "مادة") {
+        // لو اختار مادة، بيشوف لو الجدول مفتوح يعمل تظليل عليها
+        const tableRows = document.querySelectorAll('.subjects-table tbody tr');
+        let foundSubject = false;
+        
+        tableRows.forEach(row => {
+            if (row.innerText.toLowerCase().includes(keyword.toLowerCase())) {
+                row.style.background = "rgba(241, 196, 15, 0.4)"; // أصفر قوي
+                row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTimeout(() => { row.style.background = ""; }, 4000); // يختفي بعد 4 ثواني
+                foundSubject = true;
+            }
+        });
+
+        if (!foundSubject) {
+            alert(`المادة (${keyword}) صحيحة، لكن يجب فتح الشعبة الخاصة بها من جدول المعهد لتحديدها.`);
+        }
+    }
+}
+
+// إضافة تأثير الإضاءة للـ CSS برمجياً (زي ما كانت عندك)
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+    @keyframes glowingEffect {
+        0% { box-shadow: 0 0 5px #4facfe; border-color: #4facfe; }
+        100% { box-shadow: 0 0 20px #FFD700; border-color: #FFD700; transform: scale(1.03); }
+    }
+`, styleSheet.cssRules.length);
+
