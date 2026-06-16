@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>الكلية التكنولوجية المطرية - الصفحة الرئيسية</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
@@ -30,11 +30,11 @@
     <nav class="sidebar-nav">
         <ul class="nav-list primary-nav">
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <span class="material-symbols-outlined">home</span>
-                    <span class="nav-label" data-i18n="home">الصفحة الرئيسية</span>
-                </a>
-            </li>
+    <a href="#" class="nav-link" id="sidebarHomeBtn">
+        <span class="material-symbols-outlined">home</span>
+        <span class="nav-label" data-i18n="home">الصفحة الرئيسية</span>
+    </a>
+</li>
 
             <li class="nav-item dropdown-container">
                 <a href="#" class="nav-link dropdown-toggle">
@@ -172,6 +172,16 @@
     <!-- طبقة التظليل عند فتح القائمة -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
+    <div class="fixed-top-bar">
+        <div class="breadcrumb-container" id="breadcrumbContainer"></div>
+        <div class="search-wrapper">
+            <input type="text" id="siteSearchInput" autocomplete="off" placeholder="ابحث عن شعبة، مادة، أو نتيجة طالـب...">
+            <button id="siteSearchBtn" class="search-action-btn">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+            <div id="searchSuggestions" class="search-suggestions-box"></div>
+        </div>
+    </div>
     <div class="page-layout">
         <main class="main-content">
             
