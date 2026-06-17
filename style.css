@@ -769,7 +769,7 @@ html[dir="ltr"] .sidebar-nav .nav-list li .nav-link .nav-label {
     transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .moved-state.fly-top-right {
-    top: 100px !important; /* نزلناه لتحت شوية بدل 20px */
+    top: 140px !important; /* نزلنا الزرار لتحت بمسافة ممتازة */
     left: auto !important;
     right: 40px !important;
     transform: translate(0, 0) scale(0.9);
@@ -780,7 +780,7 @@ html[dir="ltr"] .sidebar-nav .nav-list li .nav-link .nav-label {
 /* محتوى الصفحة الجديدة */
 /* محتوى الصفحة الجديدة */
 .special-page-content {
-    margin-top: 280px; /* كبرنا المسافة جداً علشان كل المحتوى ينزل تحت الزرار وميبقاش لازق فيه */
+    margin-top: 340px; /* مسافة كبيرة تضمن إن المحتوى ينزل تحت الزرار تماماً في الكمبيوتر والموبايل */
     padding: 0 40px;
     opacity: 0;
     transform: translateY(40px);
