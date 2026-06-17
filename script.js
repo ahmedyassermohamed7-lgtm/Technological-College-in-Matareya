@@ -931,3 +931,24 @@ styleSheet.insertRule(`
     }
 `, styleSheet.cssRules.length);
 
+// ================= زر العودة للأعلى =================
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+// إظهار وإخفاء الزرار بناءً على النزول في الصفحة
+window.addEventListener('scroll', () => {
+    // لو المستخدم نزل أكتر من 300 بيكسل، الزرار يظهر
+    if (window.scrollY > 300) {
+        scrollToTopBtn.classList.add('show');
+    } else {
+        // لو طلع فوق تاني، الزرار يختفي
+        scrollToTopBtn.classList.remove('show');
+    }
+});
+
+// لما المستخدم يدوس على الزرار
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0, // يطلع لأول الصفحة خالص
+        behavior: 'smooth' // يطلع بنعومة مش مرة واحدة
+    });
+});
