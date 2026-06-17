@@ -1285,3 +1285,108 @@ html[dir="ltr"] .sidebar-nav .nav-list li .nav-link .nav-label {
 
 /* تظبيط الشريط للموبايل */
 /* تظبيط الشريط والمحتوى والخلفية للموبايل والشاشات الصغيرة */
+
+
+/* =========================================================
+   تعديلات الموبايل: عرض النبذة، الفوتر، وطول القائمة الجانبية
+   ========================================================= */
+@media (max-width: 768px) {
+    
+    /* 1. حل مشكلة ضيق خانة نبذة عن المعهد وجعلها عريضة */
+    .special-page-container {
+        padding-left: 75px !important; /* تقليل المسافة لتناسب شريط القائمة المصغر فقط */
+        padding-right: 15px !important;
+        width: 100% !important;
+    }
+    
+    .section-block, 
+    .typing-container, 
+    #typingBox {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 10px !important;
+    }
+
+    /* 2. حل مشكلة المسافة الكبيرة ورفع الفوتر تحت الأخبار مباشرة */
+    .page-layout {
+        min-height: unset !important; /* إلغاء فرض طول الشاشة الكامل */
+        height: auto !important;
+    }
+    
+    .main-content {
+        justify-content: flex-start !important;
+    }
+    
+    .main-footer {
+        margin-top: 40px !important; /* وضع الفوتر تحت الأخبار بمسافة صغيرة */
+    }
+
+    /* 3. تظبيط طول القائمة الجانبية وإزالة المسافة السفلية الطويلة */
+    .sidhedar {
+        height: 100dvh !important; /* يضبط الطول مع شاشة الموبايل الحقيقية بدقة */
+    }
+    
+    .sidebar-nav .primary-nav {
+        height: calc(100dvh - 280px) !important; /* تقصير القائمة من الأسفل لتكون طبيعية */
+        padding-bottom: 20px !important;
+    }
+    
+    .sidebar-nav .secindary-nav {
+        bottom: 10px !important; /* رفع القائمة السفلية قليلاً لتظهر بوضوح */
+        padding-bottom: 15px !important;
+    }
+}
+
+/* =========================================================
+   زر العودة للأعلى (Scroll to Top)
+   ========================================================= */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    left: 20px; /* حطناه على الشمال علشان القائمة الجانبية على اليمين */
+    background: linear-gradient(135deg, #1a365d, #0d1b2a); /* لون أزرق غامق شيك يتماشى مع الموقع */
+    color: white;
+    border: none;
+    border-radius: 50%; /* عشان يبقى مدور */
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 9999; /* عشان يفضل فوق كل حاجة في الصفحة */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    
+    /* تأثيرات الظهور والاختفاء */
+    opacity: 0;
+    pointer-events: none; /* عشان ميتداسش عليه وهو مخفي */
+    transform: translateY(20px);
+    transition: all 0.3s ease-in-out;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* الكلاس ده الجافاسكريبت هيضيفه لما ننزل لتحت عشان الزرار يظهر */
+.scroll-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* تأثير لما تقف عليه بالماوس (للكمبيوتر) */
+.scroll-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #2a4a7f, #1a365d);
+}
+
+/* تظبيط حجمه في الموبايل عشان مياخدش مساحة كبيرة */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 15px;
+        left: 15px;
+    }
+}
